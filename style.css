@@ -310,3 +310,45 @@ button:active {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* Localização e Mapa */
+.btn-local {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-local:hover {
+    background-color: var(--border);
+}
+
+.local-texto {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-top: 6px;
+}
+
+.mapa-container {
+    margin-bottom: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+#mapa {
+    height: 180px;
+    width: 100%;
+}
+
+.local-corrida {
+    font-size: 0.75rem;
+    color: var(--accent);
+    display: block;
+    margin-top: 2px;
+}

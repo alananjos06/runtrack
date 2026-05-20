@@ -11,6 +11,10 @@ const btnTema = document.getElementById('btnTema');
 
 let graficoDistancia = null;
 let corridas = [];
+let latitudeAtual = null;
+let longitudeAtual = null;
+let mapa = null;
+let marcador = null;
 
 function carregarCorridas() {
     const dados = localStorage.getItem('runtrackCorridas');
@@ -40,7 +44,9 @@ function criarCorrida(data, distancia, horas, minutos, segundos) {
         horas: parseInt(horas) || 0,
         minutos: parseInt(minutos) || 0,
         segundos: parseInt(segundos) || 0,
-        pace
+        pace,
+        latitude: latitudeAtual,   // ← novo
+        longitude: longitudeAtual  // ← novo
     };
 }
 
@@ -95,6 +101,14 @@ function limparFormulario() {
     editandoId.value = '';
     btnSalvar.textContent = '💾 Registrar Corrida';
     btnCancelar.style.display = 'none';
+    latitudeAtual = null;
+    longitudeAtual = null;
+    document.getElementById('localTexto').textContent = 'Nenhum local definido';
+    document.getElementById('mapaContainer').style.display = 'none';
+if (marcador) {
+    marcador.remove();
+    marcador = null;
+}
 }
 
 function atualizarResumo() {
@@ -205,6 +219,7 @@ function renderizar() {
                     Tempo: ${corrida.horas}h ${corrida.minutos}min ${corrida.segundos}s
                     ${corrida.pace ? `· Pace: ${corrida.pace}/km` : ''}
                 </span>
+                    ${corrida.latitude ? `<span class="local-corrida">📍 Local salvo</span>` : ''}
             </div>
             <div class="acoes">
                 <button class="btn-editar" onclick="editarCorrida('${corrida.id}')">✏️</button>
@@ -216,6 +231,119 @@ function renderizar() {
 
     atualizarResumo();
 }
+
+function pegarLocalizacao() {
+    if (!navigator.geolocation) {
+        alert('Seu navegador não suporta geolocalização');
+        return;
+    }
+
+    document.getElementById('btnPegarLocal').textContent = '📍 Obtendo localização...';
+    document.getElementById('btnPegarLocal').disabled = true;
+
+    navigator.geolocation.getCurrentPosition(
+        function(posicao) {
+            latitudeAtual = posicao.coords.latitude;
+            longitudeAtual = posicao.coords.longitude;
+            
+            document.getElementById('localTexto').textContent = 
+                `📍 ${latitudeAtual.toFixed(4)}, ${longitudeAtual.toFixed(4)}`;
+            document.getElementById('btnPegarLocal').textContent = '📍 Pegar minha localização';
+            document.getElementById('btnPegarLocal').disabled = false;
+            
+            mostrarMapa(latitudeAtual, longitudeAtual);
+        },
+        function(erro) {
+            alert('Erro ao obter localização. Permita o acesso ao GPS.');
+            document.getElementById('btnPegarLocal').textContent = '📍 Pegar minha localização';
+            document.getElementById('btnPegarLocal').disabled = false;
+        }
+    );
+}
+
+function pegarLocalizacao() {
+    if (!navigator.geolocation) {
+        alert('Seu navegador não suporta geolocalização');
+        return;
+    }
+
+    document.getElementById('btnPegarLocal').textContent = '📍 Obtendo localização...';
+    document.getElementById('btnPegarLocal').disabled = true;
+
+    navigator.geolocation.getCurrentPosition(
+        function(posicao) {
+            latitudeAtual = posicao.coords.latitude;
+            longitudeAtual = posicao.coords.longitude;
+            
+            document.getElementById('localTexto').textContent = 
+                `📍 ${latitudeAtual.toFixed(4)}, ${longitudeAtual.toFixed(4)}`;
+            document.getElementById('btnPegarLocal').textContent = '📍 Pegar minha localização';
+            document.getElementById('btnPegarLocal').disabled = false;
+            
+            mostrarMapa(latitudeAtual, longitudeAtual);
+        },
+        function(erro) {
+            alert('Erro ao obter localização. Permita o acesso ao GPS.');
+            document.getElementById('btnPegarLocal').textContent = '📍 Pegar minha localização';
+            document.getElementById('btnPegarLocal').disabled = false;
+        }
+    );
+}
+
+function pegarLocalizacao() {
+    if (!navigator.geolocation) {
+        alert('Seu navegador não suporta geolocalização');
+        return;
+    }
+
+    document.getElementById('btnPegarLocal').textContent = '📍 Obtendo localização...';
+    document.getElementById('btnPegarLocal').disabled = true;
+
+    navigator.geolocation.getCurrentPosition(
+        function(posicao) {
+            latitudeAtual = posicao.coords.latitude;
+            longitudeAtual = posicao.coords.longitude;
+            
+            document.getElementById('localTexto').textContent = 
+                `📍 ${latitudeAtual.toFixed(4)}, ${longitudeAtual.toFixed(4)}`;
+            document.getElementById('btnPegarLocal').textContent = '📍 Pegar minha localização';
+            document.getElementById('btnPegarLocal').disabled = false;
+            
+            mostrarMapa(latitudeAtual, longitudeAtual);
+        },
+        function(erro) {
+            alert('Erro ao obter localização. Permita o acesso ao GPS.');
+            document.getElementById('btnPegarLocal').textContent = '📍 Pegar minha localização';
+            document.getElementById('btnPegarLocal').disabled = false;
+        }
+    );
+}
+
+function mostrarMapa(lat, lng) {
+    const container = document.getElementById('mapaContainer');
+    container.style.display = 'block';
+
+    if (mapa) {
+        mapa.setView([lat, lng], 15);
+        if (marcador) marcador.remove();
+    } else {
+        mapa = L.map('mapa').setView([lat, lng], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(mapa);
+    }
+
+    marcador = L.marker([lat, lng]).addTo(mapa)
+        .bindPopup('🏃‍♀️ Local da corrida')
+        .openPopup();
+
+    // Corrige o tamanho do mapa depois de mostrar
+    setTimeout(() => {
+        mapa.invalidateSize();
+    }, 100);
+}
+document.getElementById('btnPegarLocal').addEventListener('click', pegarLocalizacao);
+
 
 // Eventos
 btnSalvar.addEventListener('click', () => {

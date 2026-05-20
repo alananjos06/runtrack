@@ -6,6 +6,8 @@
     <title>RunTrack</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
     <div class="container">
@@ -76,6 +78,17 @@
                     <input type="number" id="segundos" placeholder="0" min="0" max="59" value="0">
                 </div>
             </div>
+
+    <!-- Localização -->
+    <div class="campo">
+        <label>Local da corrida</label>
+        <button type="button" id="btnPegarLocal" class="btn-local">📍 Pegar minha localização</button>
+        <p id="localTexto" class="local-texto">Nenhum local definido</p>
+    </div>
+
+    <div id="mapaContainer" class="mapa-container" style="display: none;">
+        <div id="mapa"></div>
+    </div>
 
             <button type="button" id="btnSalvar">💾 Registrar Corrida</button>
             <button type="button" id="btnCancelar" class="btn-cancelar" style="display: none;">Cancelar Edição</button>
