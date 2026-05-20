@@ -1,0 +1,312 @@
+:root {
+    --bg: #f8faf9;
+    --card-bg: #ffffff;
+    --input-bg: #f8faf9;
+    --border: #e6e8e5;
+    --text: #1a1a1a;
+    --text-secondary: #5c5c5c;
+    --text-muted: #8f8f8f;
+    --accent: #4f8c6b;
+    --danger: #e03e3e;
+    --btn-bg: #1a1a1a;
+    --btn-text: #ffffff;
+}
+
+body.dark {
+    --bg: #141414;
+    --card-bg: #1e1e1e;
+    --input-bg: #242424;
+    --border: #2a2a2a;
+    --text: #e8e8e8;
+    --text-secondary: #a0a0a0;
+    --text-muted: #6e6e6e;
+    --accent: #6ab88a;
+    --danger: #ff6b6b;
+    --btn-bg: #e8e8e8;
+    --btn-text: #141414;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+#btnTema {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    transition: background-color 0.2s;
+}
+
+#btnTema:hover {
+    background-color: var(--input-bg);
+}
+
+/* Resumo */
+.resumo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.card-resumo {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+}
+
+.card-icone {
+    font-size: 1.2rem;
+}
+
+.card-valor {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 4px 0;
+}
+
+.card-rotulo {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Gráfico */
+.grafico-section {
+    margin-bottom: 24px;
+}
+
+.grafico-section h2 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.grafico-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    height: 190px;
+}
+
+/* Formulário */
+.formulario {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    margin-bottom: 24px;
+}
+
+.formulario h2 {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+.linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.linha.tres-cols {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.campo {
+    margin-bottom: 12px;
+}
+
+.campo label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.campo input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background-color: var(--input-bg);
+    color: var(--text);
+    transition: border-color 0.2s;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+#btnSalvar {
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    width: 100%;
+}
+
+#btnSalvar:hover {
+    opacity: 0.9;
+}
+
+.btn-cancelar {
+    background-color: transparent;
+    color: var(--text-secondary);
+    width: 100%;
+    margin-top: 8px;
+    border: 1px solid var(--border);
+}
+
+.btn-cancelar:hover {
+    background-color: var(--input-bg);
+}
+
+/* Histórico */
+.historico h2 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.vazio {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 50px 20px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+/* Card corrida */
+.card-corrida {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-corrida .info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.card-corrida .data {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.card-corrida .distancia {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.card-corrida .detalhes {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.card-corrida .acoes {
+    display: flex;
+    gap: 6px;
+}
+
+.card-corrida .acoes button {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border-radius: 6px;
+}
+
+.btn-editar {
+    background-color: var(--input-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+.btn-editar:hover {
+    background-color: var(--border);
+}
+
+.btn-excluir {
+    background-color: transparent;
+    color: var(--danger);
+}
+
+.btn-excluir:hover {
+    background-color: var(--input-bg);
+}
+
+@media (max-width: 480px) {
+    .resumo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
