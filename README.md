@@ -40,4 +40,4 @@ cd app-corrida
 <img src="./preview-escuro.png" alt="RunTrack tema escuro" width="400"></div>
 
 ## 👩‍💻 Autora
-Feito por Alana Anjos
+Feito por Alana Anjos.
