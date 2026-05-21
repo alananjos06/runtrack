@@ -8,6 +8,7 @@ App de registro de corridas com cálculo automático de pace e gráfico de evolu
 
 - Registrar corridas com data, distância e tempo (h, min, s)
 - Cálculo automático de pace (min/km)
+- Geolocalização com mapa interativo (Leaflet)
 - Cards de resumo: total de corridas, km acumulado, melhor pace, tempo total
 - Gráfico de evolução da distância com Chart.js
 - Tema escuro/claro com preferência salva
@@ -22,6 +23,8 @@ App de registro de corridas com cálculo automático de pace e gráfico de evolu
 - CSS3 (variáveis, grid, flexbox)
 - JavaScript ES6+
 - Chart.js
+- Leaflet.js
+- Geolocation API
 - LocalStorage API
 
 ---
@@ -37,7 +40,9 @@ cd app-corrida
 ## 📸 Preview
 <div align="center"> 
 <img src="./preview-claro.png" alt="RunTrack tema claro" width="400"> 
-<img src="./preview-escuro.png" alt="RunTrack tema escuro" width="400"></div>
+<img src="./preview-escuro.png" alt="RunTrack tema escuro" width="400">
+<img src="./preview-mapa.png" alt="RunTrack com mapa" width="400">
+</div>
 
 ## 👩‍💻 Autora
 Feito por Alana Anjos.
